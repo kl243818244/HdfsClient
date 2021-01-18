@@ -48,6 +48,16 @@
 
 # MapReduce 框架原理
 
+MapReduce 是分布式运算框架
+
+缺点：
+
+不能处理流数据
+
+与传统数据库相比 计算速度较慢 
+
+不擅长DAG有向计算
+
 ## 数据切片与MapTask并行度决定机制
 
 - **数据块：**Block是HDFS物理上把数据分成一块一块。
@@ -77,7 +87,11 @@
 
 ## MapReduce工作流程
 
-![image-20210111172454841](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210111172454841.png)
+![image-20210118162742152](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210118162742152.png)
+
+
+
+![image-20210118162829801](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210118162829801.png)
 
 
 
