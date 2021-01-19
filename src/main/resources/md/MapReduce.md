@@ -65,6 +65,10 @@ MapReduce 是分布式运算框架
 
 ![image-20210111161724273](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210111161724273.png)
 
+
+
+![image-20210119145736893](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210119145736893.png)
+
 # CombineTextInputFormat
 
 针对小文件过多的情况，将多个小文件从逻辑上规划到一个切片中，这样可以统一交给MapTask

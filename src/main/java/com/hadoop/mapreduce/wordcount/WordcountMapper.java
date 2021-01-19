@@ -1,4 +1,4 @@
-package com.hadoop.mapreduce;
+package com.hadoop.mapreduce.wordcount;
 
 import java.io.IOException;
 
