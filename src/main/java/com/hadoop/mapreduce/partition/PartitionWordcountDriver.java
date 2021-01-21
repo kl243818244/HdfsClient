@@ -1,4 +1,4 @@
-package com.hadoop.mapreduce.writable;
+package com.hadoop.mapreduce.partition;
 
 
 import org.apache.hadoop.conf.Configuration;
@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import com.hadoop.mapreduce.bean.FlowBean;
 
-public class WritableWordcountDriver {
+public class PartitionWordcountDriver {
 
 	public static void main(String[] args) {
 		try {
@@ -29,11 +29,16 @@ public class WritableWordcountDriver {
 			// 设置 fileinputformat 类型为 combinetextinputformat ==> 合并小型文件的类型
 //			job.setInputFormatClass(CombineTextInputFormat.class);
 //			CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);
+			
+//			job.setPartitionerClass(CustomPartitioner.class);
+//			job.setNumReduceTasks(5);
+			
+			job.setCombinerClass(WordCountCombiner.class);
 
-			job.setJarByClass(WritableWordcountDriver.class);
+			job.setJarByClass(PartitionWordcountDriver.class);
 
-			job.setMapperClass(WritableWordcountMapper.class);
-			job.setReducerClass(WritableWordcountReducer.class);
+			job.setMapperClass(PartitionWordcountMapper.class);
+			job.setReducerClass(PartitionWordcountReducer.class);
 
 			job.setMapOutputKeyClass(Text.class);
 			job.setMapOutputValueClass(FlowBean.class);
@@ -42,7 +47,7 @@ public class WritableWordcountDriver {
 			job.setOutputValueClass(FlowBean.class);
 
 			FileInputFormat.setInputPaths(job, new Path("F:\\weining\\BigData\\backfile\\phone_data.txt"));
-			FileOutputFormat.setOutputPath(job, new Path("F:\\weining\\BigData\\backfile\\outwritable"));
+			FileOutputFormat.setOutputPath(job, new Path("F:\\weining\\BigData\\backfile\\outcombine"));
 
 			boolean waitForCompletion = job.waitForCompletion(true);
 			
