@@ -99,6 +99,48 @@ MapReduce 是分布式运算框架
 
 
 
+![image-20210119170840590](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210119170840590.png)
+
+
+
+![image-20210119171415615](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210119171415615.png)
+
+
+
+![image-20210119173738072](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210119173738072.png)
+
+
+
+![image-20210120103422330](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210120103422330.png)
+$$
+分组排序：指的是在reduceTask 中进行排序操作
+$$
+
+> 因为map的结果数据中key是bean，不是普通数据类型，所以需要使用自定义的比较器来分组，就使用bean中的订单号来比较。
+
+```java
+@Override
+public int compare(WritableComparable a, WritableComparable b) {
+	OrderBean aBean = (OrderBean) a;
+	OrderBean bBean = (OrderBean) b;
+
+	int result;
+	if (aBean.getOrderId() > bBean.getOrderId()) {
+		result = 1;
+	} else if (aBean.getOrderId() < bBean.getOrderId()) {
+		result = -1;
+	} else {
+		result = 0;
+	}
+
+	return result;
+}
+}
+```
+
+
+
+
 ## MapReduce Join 操作
 
 ![image-20210115101544006](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210115101544006.png)
@@ -108,6 +150,10 @@ MapReduce 是分布式运算框架
 ## ReduceTask工作机制
 
 ![image-20210115102949131](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210115102949131.png)
+
+
+
+![image-20210120161719403](C:\Users\JayZhou\AppData\Roaming\Typora\typora-user-images\image-20210120161719403.png)
 
 
 
